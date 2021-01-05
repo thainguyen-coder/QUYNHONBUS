@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Phản hồi</title>
+  <title>Update Trạm</title>
   <link rel="stylesheet" href="">
 </head>
 <style>
-  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+  
 
 * {
   margin:0;
@@ -137,36 +137,76 @@ fieldset {
 :-ms-input-placeholder {
  color:#888;
 }
+a:link{
+	margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
     
 </style>
 <body>
-  <?php include('feedbackdetail.php'); ?>
+
   <div class="container">  
-  <form id="contact" action="#" method="post" >
-    <h3>LIÊN HỆ NHANH</h3>
-    <h4>LIÊN HỆ VỚI CHÚNG TÔI NGAY HÔM NAY, VÀ NHẬN TRẢ LỜI TRONG 24 GIỜ!</h4>
+  <form id="contact"  method="post"  >
+  <h2>Update Trạm</h2>
+    
+	<?php 
+				
+				include 'config.php';
+				$GLOBALS['id']=$id = isset($_GET['id']) ? $_GET['id'] : '';
+				$query = "select * from route_setting where routeId = '$id' ";
+				$result = mysqli_query($conn, $query);
+				if($row = mysqli_fetch_array($result))
+				{
+					$GLOBALS['idtram']=$row['id'];
+					for($i=1;$i<2;$i++){
+					echo "<input placeholder='ID' type='text'  name='id' value='$row[id]' disabled>";
+					echo "<input placeholder='Route ID' type='text'  name='routeid' value='$row[routeId]' disabled >";
+					echo "<input placeholder='Name' type='text'  name='name' value='$row[name]' autofocus>";
+					echo "<input placeholder='Latitude Center' type='text'  name='latitudeCenter' value='$row[latitudeCenter]'>";
+					echo "<input placeholder='Longitude Center' type='text'  name='longitudeCenter' value='$row[longitudeCenter]'>";
+					}
+				}
+				
+				?>
     <fieldset>
-      <input placeholder="Họ tên hành khách" type="text" tabindex="1" name="name" value="<?= $name ?>" autofocus>
-      <span class="error"><h6><?= $name_error ?></h6></span>
+      <button name="submit" type="submit" id="contact-submit">Sửa</button>
     </fieldset>
-    <fieldset>
-      <input placeholder="Địa chỉ Email" type="text" tabindex="2" name="email" value="<?= $email ?>">
-      <span class="error"><h6><?= $email_error ?></h6></span>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Số điện thoại" type="text" tabindex="3" name="phone" value="<?= $phone ?>"> 
-      <span class="error"><h6><?= $phone_error ?></h6></span>
-    </fieldset>
-    <fieldset>
-      <textarea placeholder="Gõ tin nhắn của bạn ở đây...." tabindex="5" name="massage" value="<?= $message ?>"></textarea>
-    </fieldset>
-    <fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Gửi</button>
-    </fieldset>
- 
+	<?php 
+	$url="listmarker.php?id=".$GLOBALS['id'];
+	echo "<a href='$url'>Quay lại</a>"
+	?>
   </form>
- 
-  
+  <script type="text/javascript">
+			function redirect($a)
+			{
+				header("Location: {$a}");
+			}
+			</script>
+  <?php
+include "config.php";
+if(isset($_POST["submit"]))
+	{
+		$GLOBALS['idtuyen']=$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$name =$_POST["name"];
+		$lati = $_POST["latitudeCenter"];
+		$longi =$_POST["longitudeCenter"];
+		if ($id == "" || $name == "" || $lati == "" || $longi== "") {
+			echo"<script>alert('Bạn vui lòng điền đầy đủ thông tin!')</script>";
+		}
+		else{	
+			$sql = "UPDATE route_setting SET  routeId='$GLOBALS[idtuyen]',name='$name',latitudeCenter='$lati',longitudeCenter ='$longi' where id='$GLOBALS[idtram]'	";
+			mysqli_query($conn,$sql);
+			function redirect($a)
+			{
+				header("Location: {$a}");
+			}
+			$url="listmarker.php?id=".$GLOBALS['id'];
+			redirect($url);
+			}
+	}
+?>
 </div>
 </body>
 </html>

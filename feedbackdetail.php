@@ -52,14 +52,14 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 		$name =$_POST["name"];
 		$phone = $_POST["phone"];
 		$message =$_POST["massage"];
+		
 		if ($email == "" || $name == "" || $phone == "" || $message== "") {
 			echo"<script>alert('Bạn vui lòng điền đầy đủ thông tin!')</script>";
 		
 		}else{
-
-			$sql = "INSERT INTO feedback(Email, Name, Phone, Message
+			$time=date("Y/m/d");
 			
-			) VALUES ('$email', '$name', '$phone', '$message')";
+			$sql = "INSERT INTO feedback(Email, Name, Phone, Message, Time) VALUES ('$email', '$name', '$phone', '$message','$time')";
 				// thực thi câu $sql với biến conn lấy từ file connection.php
 		mysqli_query($conn,$sql);
 		

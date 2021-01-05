@@ -54,37 +54,42 @@
 				<input type="submit" value="Tìm" name="submit">
 					</form>
 					</div>
-		<form id="form" action="route_detail.php" method="GET" align="center">
+	</div>
+      
+</body>
+</html>
+
+
+
+		<form id="form" action="" method="POST" align="center">
 			<li>
 			
 				<!--<th width="300px" align="center"> Mã tuyến</th> -->
 				<h3> Tên tuyến</h3>
 
 				<table class="table" >
-
 					<?php 
-
-					include 'config.php';
-					//cau len sql 
-					$query = "select * from route_description order by routeId ";
-					//xu li cau lenh sql
-					$result = mysqli_query($conn, $query);
-					while ($row = mysqli_fetch_array($result)) { ?>
-					<tr>
-						<!--	<td><a href="route_detail.php?id=<?php echo $row['id'];?>"><?php echo $row ['id']; ?></a></td> -->
-						<td><a href="routedetail.php?id=<?php echo $row['routeId'];?>" ><?php echo $row ['name']; ?></a></td>
-					</tr>
-					<?php }
-					?>
+						include "config.php";
+						if(isset($_POST["submit"]))
+							{
+								$keyword = $_POST["search"];
+								$sql ="select routeId from route_setting where name LIKE '$keyword%' GROUP BY routeId";
+								$result=mysqli_query($conn,$sql);
+								while($row=mysqli_fetch_array($result))
+								{
+									$sql2="select * from route_description where routeId='$row[routeId]'";
+									$result2=mysqli_query($conn,$sql2);
+									while($row2=mysqli_fetch_array($result2)){?>
+										<tr>
+									<!--	<td><a href="route_detail.php?id=<?php echo $row2['id'];?>"><?php echo $row2['id']; ?></a></td> -->
+									<td><a href="routedetail.php?id=<?php echo $row2['routeId'];?>" ><?php echo $row2['name']; ?></a></td>
+										</tr>
+										<?php }
+								}
+							}
+									?>
+								
 
 				</table>
 			</li>
 		</form>
-	</div>
-</div>
-</div>
-      
-</body>
-</html>
-
-

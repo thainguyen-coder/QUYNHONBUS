@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mau</title>
+	<title>Xe Buýt TP Quy Nhơn</title>
 	
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">

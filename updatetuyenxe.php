@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="">
 </head>
 <style>
-  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+  
 
 * {
   margin:0;
@@ -137,36 +137,69 @@ fieldset {
 :-ms-input-placeholder {
  color:#888;
 }
+a:link{
+	margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
     
 </style>
 <body>
-  <?php include('feedbackdetail.php'); ?>
+
   <div class="container">  
-  <form id="contact" action="#" method="post" >
-    <h3>LIÊN HỆ NHANH</h3>
-    <h4>LIÊN HỆ VỚI CHÚNG TÔI NGAY HÔM NAY, VÀ NHẬN TRẢ LỜI TRONG 24 GIỜ!</h4>
+  <form id="contact"  method="post"  >
+  <h2>Thêm tuyến xe </h2>
+    
+	<?php 
+				
+				include 'config.php';
+				$id = isset($_GET['id']) ? $_GET['id'] : '';
+				$query = "select * from route_description where routeId = '$id' ";
+				$result = mysqli_query($conn, $query);
+				if($row = mysqli_fetch_array($result))
+				{
+					for($i=1;$i<2;$i++){
+					echo "<input placeholder='Route ID' type='text'  name='routeid' value='$row[routeId]' autofocus>";
+					echo "<input placeholder='Name' type='text'  name='name' value='$row[name]'>";
+					echo "<input placeholder='Start Time' type='text'  name='starttime' value='$row[startTime]'>";
+					echo "<input placeholder='End Time' type='text'  name='endtime' value='$row[endTime]'>";
+					echo "<input placeholder='Fare' type='text'  name='fare' value='$row[fare]'>";
+					echo "<input placeholder='Route Lenght' type='text'  name='routelenght' value='$row[routeLenght]'>";
+					echo "<input placeholder='Number Of Route' type='text'  name='numberofroute' value='$row[numberOfRoute]'>";
+					}
+				}
+				?>
     <fieldset>
-      <input placeholder="Họ tên hành khách" type="text" tabindex="1" name="name" value="<?= $name ?>" autofocus>
-      <span class="error"><h6><?= $name_error ?></h6></span>
+      <button name="submit" type="submit" id="contact-submit">Sửa</button>
     </fieldset>
-    <fieldset>
-      <input placeholder="Địa chỉ Email" type="text" tabindex="2" name="email" value="<?= $email ?>">
-      <span class="error"><h6><?= $email_error ?></h6></span>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Số điện thoại" type="text" tabindex="3" name="phone" value="<?= $phone ?>"> 
-      <span class="error"><h6><?= $phone_error ?></h6></span>
-    </fieldset>
-    <fieldset>
-      <textarea placeholder="Gõ tin nhắn của bạn ở đây...." tabindex="5" name="massage" value="<?= $message ?>"></textarea>
-    </fieldset>
-    <fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Gửi</button>
-    </fieldset>
- 
+	<a href="admin?options=listcontact">Quay lại</a>
   </form>
- 
-  
+  <?php
+include "config.php";
+if(isset($_POST["submit"]))
+	{
+		$routeid = $_POST["routeid"];
+		$name =$_POST["name"];
+		$starttime = $_POST["starttime"];
+		$endtime =$_POST["endtime"];
+		$fare = $_POST["fare"];
+		$routelenght =$_POST["routelenght"];
+		$numberoflenght = $_POST["numberofroute"];
+		if ($routeid == "" || $name == "" || $starttime == "" || $endtime== ""||$fare == "" || $routelenght == "" || $numberoflenght == "") {
+			echo"<script>alert('Bạn vui lòng điền đầy đủ thông tin!')</script>";
+		
+		}else{	
+			$sql = "UPDATE route_description SET name='$name',startTime='$starttime',endTime ='$endtime',fare=$fare,routeLenght=$routelenght,
+				numberOfRoute=$numberoflenght where routeId='$routeid'	";
+		mysqli_query($conn,$sql);
+			
+		 echo "<script>alert('Update thành công')</script>";
+		 header('Location:admin?options=listcontact');
+			}
+	}
+	
+?>
 </div>
 </body>
 </html>

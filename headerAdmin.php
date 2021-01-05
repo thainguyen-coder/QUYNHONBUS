@@ -1,3 +1,11 @@
+<?php 
+ session_start();
+ if($_SESSION['username'])
+ {
+ }else
+ header("location:login.php")
+ 
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +24,16 @@
 		</div>
 		<div id="menutop">
 			<ul>
+				
 				<li><a href="?options=trangchu">Trang chủ</a></li>
-				<li><a href="?options=gioithieu">Giới thiệu</a></li>
 				<li><a href="?options=thongtin">Thông tin tuyến</a></li>
-				<li><a href="?options=phananh">Phản ánh</a></li>
-				<li><a href="?options=hotro">Hỗ trợ</a></li>
+				<li><a href="?options=listcontact">Quản lý tuyến</a></li>
+				<li><a href="?options=viewphananh">Xem phản hồi</a></li>
 			</ul>
 		</div>
-		
-		
+		<?php
+		echo "<p style='text-align:right;font-size: 8px'>Xin chào $_SESSION[username] <a href='logout.php' style='text-align:right;font-size: 7px; color:#007BFF'>Logout</a></p>";
+		?>
 		<div id="maincontent">
 			<div id="content">
 				<?php
@@ -33,20 +42,28 @@
 						case 'trangchu':
 							include "home.php";
 							break;
-						case 'gioithieu':
-							include "about.php";
-							break;
 						case 'thongtin':
 							include "route.php";
 							break;
-						case 'phananh':
-							include "feedback.php";
+						case 'listcontact':
+							include "listcontact.php";
 							break;
-						case 'hotro':
-							include "help.php";
+						case 'viewphananh':
+							include "viewfeedback.php";
 							break;
-						case 'search':
-							include "routeseach.php";
+						case 'addtuyenxe':
+							include "addtuyenxe.php";
+		
+							break;
+						case 'addmarker':
+							include "addmarker.php";
+		
+							break;
+						case 'updatetuyenxe':
+							include "updatetuyenxe.php";
+							break;
+						case 'logout':
+							include "logout.php";
 							break;
 					}
 				  ?>

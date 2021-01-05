@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -8,7 +8,7 @@
 </head>
 <body>
 	<?php 
-	require"header.php";
+	require"headerAdmin.php";
 	require"footer.php";
 	?>
 	

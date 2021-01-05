@@ -17,12 +17,12 @@
 				include 'config.php';
 				$id = isset($_GET['id']) ? $_GET['id'] : '';
 								//cau len sql 
-				$query = "select * from route where id = '$id' ";
+				$query = "select * from route_description where routeId = '$id' ";
 								//xu li cau lenh sql
 				$result = mysqli_query($conn, $query);
 				if($row = mysqli_fetch_array($result))
 				{
-					echo $row['id'];
+					echo $row['routeId'];
 				}
 				
 				?>
@@ -33,7 +33,7 @@
 				include 'config.php';
 				$id = isset($_GET['id']) ? $_GET['id'] : '';
 								//cau len sql 
-				$query = "select * from route where id = '$id' ";
+				$query = "select * from route_description where routeId = '$id' ";
 								//xu li cau lenh sql
 				$result = mysqli_query($conn, $query);
 				if($row = mysqli_fetch_array($result))
@@ -59,23 +59,6 @@
 				
 				?>
 			</span> <br>
-			<span><b><i>Lượt về:</i></b><br>
-				
-				<?php 
-				
-				include 'config.php';
-				$id = isset($_GET['id']) ? $_GET['id'] : '';
-								//cau len sql 
-				$query = "select * from route_setting where routeId = '$id' order by id  desc";
-								//xu li cau lenh sql
-				$result = mysqli_query($conn, $query);
-				while($row = mysqli_fetch_array($result))
-				{
-					echo $row['name']."--";
-				}
-				
-				?>
-			</span> <br>
 		
 			<ul>
 				<li><b><i>Thời gian hoạt động:</i></b>
@@ -85,7 +68,7 @@
 					include 'config.php';
 					$id = isset($_GET['id']) ? $_GET['id'] : '';
 								//cau len sql 
-					$query = "select * from route where id = '$id' ";
+					$query = "select * from route_description where routeId = '$id' ";
 								//xu li cau lenh sql
 					$result = mysqli_query($conn, $query);
 					if($row = mysqli_fetch_array($result))
