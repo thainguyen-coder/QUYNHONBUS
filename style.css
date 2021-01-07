@@ -11,6 +11,11 @@ body {
 	margin: 0 auto;
 	background-color: #bcc34a00;
 }
+#content{
+	float: left;
+	width: 200px;
+	height: 800px
+}
 #head {
 	height: 120 px;
 	background: #0b577a;
@@ -44,11 +49,7 @@ body {
 	padding: 500px 1400px;
 	width: 100%;
 }
-#content{
-	float: left;
-	width: 200px;
-	height: 800px
-}
+
 #right {
 	float: right;
 	margin-right: -100%;
@@ -172,4 +173,8 @@ body {
 	 position: relative;
 	
 	 
+}
+.timtram{
+	margin-left:100px;
+	
 }

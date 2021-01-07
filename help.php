@@ -51,7 +51,7 @@
 			-ms-transform: translate(-0%,-50%);
 			top: 58%;
 
-			width: 62%;
+			width: 50%;
 
 		}
 		.text{
@@ -72,7 +72,6 @@
 	</style>
 </head>
 <body>
-	<div>
 		<div class="chung">
 			<div class="w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
 				<h1 class="w3-xlarge">SINH VIÊN THỰC HIỆN</h1>

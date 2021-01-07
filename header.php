@@ -48,6 +48,9 @@
 						case 'search':
 							include "routeseach.php";
 							break;
+						case 'search2':
+							include "seach2tram.php";
+							break;
 					}
 				  ?>
 

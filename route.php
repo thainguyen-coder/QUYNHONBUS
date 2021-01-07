@@ -10,7 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="stylesearch.css">
 </head>
 <style type="text/css">
 	
@@ -39,21 +39,27 @@
 		font-size:250%;
 	}
 	.seach{
-		padding-top:30px;
+		padding-top:10px;
 	}
 	</style>
 	<body style="background:#EEEEEE">
-		
-		
-	</div>
-	<div id="divResult" class="x" style="height: auto !important;">
-	<div align="right">
-	<form action="?options=search" class="seach" method="POST">
+		<form action="?options=search" class="seach" method="POST">
 				<label for="gsearch">Tìm kiếm trạm</label>
 				<input type="search" id="seach" name="search">
 				<input type="submit" value="Tìm" name="submit">
 					</form>
-					</div>
+	</div>
+	<div id="divResult" class="x" style="height: auto !important;">
+	<div align="right">
+	<form action="?options=search2" class="seach" method="POST">
+				<label for="gsearch">Tìm kiếm 2 trạm</label></br>
+				<input type="search"  name="search1"></br>
+				<input type="search"  name="search2"></br>
+				<input type="submit" value="Tìm" name="submit" style="margin-right:60px">
+					</form>
+	</div>
+	</div>
+		<div>
 		<form id="form" action="route_detail.php" method="GET" align="center">
 			<li>
 			
@@ -80,6 +86,7 @@
 				</table>
 			</li>
 		</form>
+		</div>
 	</div>
 </div>
 </div>
